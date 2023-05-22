@@ -20,7 +20,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			// Initialize the MAUI Blazor Toolkit by adding the below line of code
-			.UseMauiBlazorToolKit()
+			.UseMauiBlazorToolkit()
 			// After initializing the MAUI Blazor Toolkit, optionally add additional fonts
 			.ConfigureFonts(fonts =>
 			{
