@@ -1,60 +1,60 @@
 # MauiBlazorToolkit
+English || [简体中文](/README.zh-CN.md)
 
-MauiBlazor 工具箱，封装了一些 Maui 和 Maui Blazor 的工具类，例如标题栏颜色的更改。
+The Maui Blazor toolbox encapsulates some Maui and Maui Blazor tool classes, such as changing the color of the title bar.
+Referenced and imitated the [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui). Thank you very much.
 
-参考并模仿了 [.NET MAUI社区工具包](https://github.com/CommunityToolkit/Maui) ,在此特别感谢。
+## Start
+Install [Yu-Core.MauiBlazorToolkit](https://www.nuget.org/packages/Yu-Core.MauiBlazorToolkit) from NuGet
 
-## 开始
-若要使用 MauiBlazor 工具箱，需要在文件中调用扩展方法，如下所示：MauiProgram.cs
-```Csharp
+To use the MauiBlazor toolkit, you need to call the extension method in the file, as shown below: MauiProgram.cs
+
+```csharp
 using MauiBlazorToolKit;
-
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
+public static MauiApp CreateMauiApp()
+{
+	var builder = MauiApp.CreateBuilder();
+	builder
+	.UseMauiApp<App>()
+	// Initialize the MAUI Blazor Toolkit by adding the below line of code
+	.UseMauiBlazorToolKit()
+	// After initializing the MAUI Blazor Toolkit, optionally add additional fonts
+	.ConfigureFonts(fonts =>
 	{
-		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
-			// Initialize the MAUI Blazor Toolkit by adding the below line of code
-			.UseMauiBlazorToolKit()
-			// After initializing the MAUI Blazor Toolkit, optionally add additional fonts
-			.ConfigureFonts(fonts =>
-			{
-				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
-
-		// Continue initializing your .NET MAUI App here
-
-		return builder.Build();
+		fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+		fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+	});
+	// Continue initializing your .NET MAUI App here
+	return builder.Build();
 	}
 }
 ```
+## TitleBarBehavior (Title Bar Color)
 
-## TitleBarBehavior(标题栏颜色)
-`TitleBarBehavior` 允许你自定义设备标题栏的颜色和样式。
+`TitleBarBehavior` allows you to customize the color and style of the device's title bar.
+Note that it can only be used in Windows and Mac OS. If you want to change the status bar of Android and iOS, please refer to the [.NET MAUI Community Toolkit](https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/maui/behaviors/statusbar-behavior?tabs=ios)
 
-注意，只能在Windows和mac OS中使用。如果想改变Android和iOS的状态栏请查看 [.NET MAUI社区工具包](https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/maui/behaviors/statusbar-behavior?tabs=ios)
+#### Configuration
 
-#### 配置
-修改 `MainPage.xaml`
+Modify ` MainPage.xaml`
 ```xaml
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mauiBlazorToolkit="clr-namespace:MauiBlazorToolKit.Behaviors;assembly=MauiBlazorToolkit"
-             x:Class="MyLittleApp.MainPage">
-    
-    <ContentPage.Behaviors>
-       <mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="LightContent"></mauiBlazorToolkit:TitleBarBehavior>
-    </ContentPage.Behaviors>
-
+<ContentPage xmlns=" http://schemas.microsoft.com/dotnet/2021/maui "
+			xmlns:x=" http://schemas.microsoft.com/winfx/2009/xaml "
+			xmlns:mauiBlazorToolkit="clr-namespace:MauiBlazorToolKit.Behaviors;assembly=MauiBlazorToolkit"
+			x:Class="MyLittleApp.MainPage">
+	<ContentPage.Behaviors>
+		<mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="LightContent"></mauiBlazorToolkit:TitleBarBehavior>
+	</ContentPage.Behaviors>
 </ContentPage>
 ```
-修改 `MauiProgram.cs`
+
+Modify `MauiProgram.cs`
+
 ```csharp
-var builder = MauiApp.CreateBuilder();
-builder
+	var builder = MauiApp.CreateBuilder();
+	builder
 	.UseMauiApp<App>()
 	.UseMauiBlazorToolkit(options =>
 	{
@@ -62,42 +62,41 @@ builder
 	})
 ```
 
-#### 使用
+#### Using
 
 ```csharp
 using MauiBlazorToolKit.Platform
-
 #if Windows || MacCatalyst
 	TitleBar.SetColor(titleBarColor);
 	TitleBar.SetStyle(TitleBarStyle.LightContent);
 #endif
 ```
 
-## WebViewSoftInputPatch(软键盘遮挡问题)
-`WebViewSoftInputPatch` 帮助你的软键盘不会遮挡输入框
+## WebViewSoftInputPatch (Soft Keyboard Occlusion Problem)
+`WebViewSoftInputPatch ` helps your soft keyboard not block input boxes
+Note that it will only take effect in Android and only for Maui Blazor
 
-注意，只会在 Android 中生效，只针对于 Maui Blazor
-
-#### 配置
-修改 `MauiProgram.cs`
+#### Configuration
+Modify ` MauiProgram.cs`
 ```csharp
-var builder = MauiApp.CreateBuilder();
-builder
+	var builder = MauiApp.CreateBuilder();
+	builder
 	.UseMauiApp<App>()
 	.UseMauiBlazorToolkit(options =>
 	{
-		options.WebViewSoftInputPatch = true;
+	options.WebViewSoftInputPatch = true;
 	})
 ```
-## AppStoreLauncher(打开默认应用商店)
-`AppStoreLauncher` 允许你打开默认的应用商店
+## AppStoreLauncher (opens the default app store)
+`AppStoreLauncher` allows you to open the default app store
 
-appId 在 Windows 中为 App 的 ProductId
+The appId is the ProductId of the app in Windows
 
-appId 在 iOS/MacCatalyst 中为 App 的 bundle ID
+The appId is the bundle ID of the app in iOS/MacCatalyst
 
-appId 在 Android 中为 App 的包名
-#### 使用
+The appId is the package name of the app in Android
+
+#### Using
 ```csharp
 AppStoreLauncher.TryOpenAsync(appId);
 ```

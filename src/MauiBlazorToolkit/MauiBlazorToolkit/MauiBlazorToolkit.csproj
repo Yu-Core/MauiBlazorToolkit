@@ -16,6 +16,17 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageId>Yu-Core.MauiBlazorToolkit</PackageId>
+		<Authors>Yu-Core</Authors>
+		<Description>MauiBlazor 工具箱，封装了一些 Maui 和 Maui Blazor 的工具类，例如标题栏颜色的更改。
+
+参考并模仿了 .NET MAUI社区工具包 ,在此特别感谢。</Description>
+		<PackageProjectUrl>https://github.com/Yu-Core/MauiBlazorToolkit</PackageProjectUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/Yu-Core/MauiBlazorToolkit</RepositoryUrl>
+		<PackageTags>MAUI;Maui;Blazor;Toolkit</PackageTags>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net7.0-ios')) != true">
@@ -64,6 +75,17 @@
 	
 	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) == true">
 	  <PackageReference Include="PInvoke.User32" Version="0.7.124" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Include="..\..\..\LICENSE">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	  <None Include="..\..\..\README.md">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 	
 </Project>
