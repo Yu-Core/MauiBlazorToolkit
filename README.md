@@ -1,5 +1,5 @@
 # MauiBlazorToolkit
-English || [¼òÌåÖÐÎÄ](/README.zh-CN.md)
+English || [ç®€ä½“ä¸­æ–‡](/README.zh-CN.md)
 
 The Maui Blazor toolbox encapsulates some Maui and Maui Blazor tool classes, such as changing the color of the title bar.
 Referenced and imitated the [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui). Thank you very much.
