@@ -25,9 +25,9 @@ static partial class TitleBar
 	{
         var color = style switch
         {
-            TitleBarStyle.Default => Colors.Black,
-            TitleBarStyle.LightContent => Colors.Black,
-            TitleBarStyle.DarkContent => Colors.White,
+            TitleBarStyle.Default => Colors.White,
+            TitleBarStyle.LightContent => Colors.White,
+            TitleBarStyle.DarkContent => Colors.Black,
             _ => throw new NotSupportedException($"{nameof(TitleBarStyle)} {style} is not yet supported on iOS")
         };
         Resources["WindowCaptionForeground"] = color.ToWindowsColor();
