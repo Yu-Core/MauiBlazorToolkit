@@ -42,7 +42,7 @@ Modify ` MainPage.xaml`
 ```xaml
 <ContentPage xmlns=" http://schemas.microsoft.com/dotnet/2021/maui "
 			xmlns:x=" http://schemas.microsoft.com/winfx/2009/xaml "
-			xmlns:mauiBlazorToolkit="clr-namespace:MauiBlazorToolKit.Behaviors;assembly=MauiBlazorToolkit"
+			xmlns:mauiBlazorToolkit="clr-namespace:MauiBlazorToolkit.Behaviors;assembly=MauiBlazorToolkit"
 			x:Class="MyLittleApp.MainPage">
 	<ContentPage.Behaviors>
 		<mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="LightContent"></mauiBlazorToolkit:TitleBarBehavior>
