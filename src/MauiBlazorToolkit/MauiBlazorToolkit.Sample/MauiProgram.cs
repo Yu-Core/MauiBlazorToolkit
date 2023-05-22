@@ -11,6 +11,7 @@ namespace MauiBlazorToolkit.Sample
                 .UseMauiApp<App>()
                 .UseMauiBlazorToolkit(options =>
                 {
+                    options.HiddenMacTitleVisibility = true;
                     options.WebViewSoftInputPatch = true;
                 })
                 .ConfigureFonts(fonts =>

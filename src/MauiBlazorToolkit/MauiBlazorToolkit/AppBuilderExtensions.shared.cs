@@ -17,14 +17,18 @@ public static class AppBuilderExtensions
 #if MACCATALYST
              events.AddiOS(ios => ios
                   .FinishedLaunching((window, args) => {
-                      TitleBar.Initialize();
+                      if(Options.InternalHiddenMacTitleVisibility)
+                      {
+                         TitleBar.Initialize();
+                      }
                       return true;
                   })
              );
 #elif ANDROID
              events.AddAndroid(android => android
                   .OnPostCreate((window,args)=>{
-                      if(Options.InternalWebViewSoftInput) {
+                      if(Options.InternalWebViewSoftInput) 
+                      {
                          WebViewSoftInputPatch.Initialize();
                       }
                   })

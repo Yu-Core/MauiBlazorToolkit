@@ -2,7 +2,7 @@
 
 MauiBlazor 工具箱，封装了一些 Maui 和 Maui Blazor 的工具类，例如标题栏颜色的更改。
 
-参考并模仿了 [MAUI社区工具包](https://github.com/CommunityToolkit/Maui) ,在此特别感谢。
+参考并模仿了 [.NET MAUI社区工具包](https://github.com/CommunityToolkit/Maui) ,在此特别感谢。
 
 ## 开始
 若要使用 MauiBlazor 工具箱，需要在文件中调用扩展方法，如下所示：MauiProgram.cs
@@ -38,7 +38,7 @@ public static class MauiProgram
 注意，只能在Windows和mac OS中使用。如果想改变Android和iOS的状态栏请查看 [.NET MAUI社区工具包](https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/maui/behaviors/statusbar-behavior?tabs=ios)
 
 #### 配置
-一般是修改 `MainPage.xaml`
+修改 `MainPage.xaml`
 ```xaml
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -51,24 +51,36 @@ public static class MauiProgram
 
 </ContentPage>
 ```
+修改 `MauiProgram.cs`
+```csharp
+var builder = MauiApp.CreateBuilder();
+builder
+	.UseMauiApp<App>()
+	.UseMauiBlazorToolkit(options =>
+	{
+		options.HiddenMacTitleVisibility = true;
+	})
+```
 
 #### 使用
 
-```Csharp
+```csharp
 using MauiBlazorToolKit.Platform
 
-TitleBar.SetColor(titleBarColor);
-TitleBar.SetStyle(TitleBarStyle.LightContent);
+#if Windows || MacCatalyst
+	TitleBar.SetColor(titleBarColor);
+	TitleBar.SetStyle(TitleBarStyle.LightContent);
+#endif
 ```
 
 ## WebViewSoftInputPatch
 `WebViewSoftInputPatch` 帮助你的软键盘不会遮挡输入框
 
-注意，只会在Android中生效，只针对于Maui Blazor
+注意，只会在 Android 中生效，只针对于 Maui Blazor
 
 #### 配置
-修改 MauiProgram.cs
-```Csharp
+修改 `MauiProgram.cs`
+```csharp
 var builder = MauiApp.CreateBuilder();
 builder
 	.UseMauiApp<App>()
@@ -76,4 +88,13 @@ builder
 	{
 		options.WebViewSoftInputPatch = true;
 	})
+```
+## AppStoreLauncher
+`AppStoreLauncher` 允许你打开默认的应用商店
+appId在Windows中为App的 ProductId
+appId在iOS/MacCatalyst中为App的 bundle ID
+appId在Android中为App的包名
+#### 使用
+```csharp
+AppStoreLauncher.TryOpenAsync(appId);
 ```
