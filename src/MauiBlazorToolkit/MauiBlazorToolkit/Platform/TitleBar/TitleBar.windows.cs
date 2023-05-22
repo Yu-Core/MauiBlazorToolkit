@@ -4,7 +4,7 @@ using System.Runtime.Versioning;
 using PInvoke;
 using static PInvoke.User32;
 
-namespace MauiBlazorToolKit.Platform;
+namespace MauiBlazorToolkit.Platform;
 
 [SupportedOSPlatform("Windows")]
 static partial class TitleBar

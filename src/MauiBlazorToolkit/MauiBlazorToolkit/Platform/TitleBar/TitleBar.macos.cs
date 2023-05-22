@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Versioning;
 
-namespace MauiBlazorToolKit.Platform;
+namespace MauiBlazorToolkit.Platform;
 
 [SupportedOSPlatform("MacCatalyst10.0"), UnsupportedOSPlatform("MacOS")]
 static partial class TitleBar

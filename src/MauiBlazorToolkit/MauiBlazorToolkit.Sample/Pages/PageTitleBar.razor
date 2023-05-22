@@ -1,0 +1,48 @@
+﻿@page "/titleBar"
+@using MauiBlazorToolkit.Platform
+
+<h3>TitleBar</h3>
+<div class="mb-2">
+    <button @onclick="Light">Light</button>
+</div>
+<div class="mb-2">
+    <button @onclick="Dark">Dark</button>
+</div>
+<div class="mb-2">
+    <button @onclick="Red">Red</button>
+</div>
+<div class="mb-2">
+    <button @onclick="Blue">Blue</button>
+</div>
+<div class="mb-2">
+    <button @onclick="Green">Green</button>
+</div>
+@code {
+    void Light()
+    {
+        TitleBar.SetColor(Colors.White);
+        TitleBar.SetStyle(TitleBarStyle.LightContent);
+    }
+
+    void Dark()
+    {
+        TitleBar.SetColor(Colors.Black);
+        TitleBar.SetStyle(TitleBarStyle.DarkContent);
+    }
+
+    void Red()
+    {
+        TitleBar.SetColor(Colors.Red);
+        TitleBar.SetStyle(TitleBarStyle.DarkContent);
+    }
+    void Blue()
+    {
+        TitleBar.SetColor(Colors.Blue);
+        TitleBar.SetStyle(TitleBarStyle.DarkContent);
+    }
+    void Green()
+    {
+        TitleBar.SetColor(Colors.Green);
+        TitleBar.SetStyle(TitleBarStyle.DarkContent);
+    }
+}

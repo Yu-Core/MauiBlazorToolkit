@@ -1,10 +1,10 @@
 
-using MauiBlazorToolKit.Extensions;
-using MauiBlazorToolKit.Platform;
+using MauiBlazorToolkit.Extensions;
+using MauiBlazorToolkit.Platform;
 using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
 
-namespace MauiBlazorToolKit.Behaviors;
+namespace MauiBlazorToolkit.Behaviors;
 
 /// <summary>
 /// <see cref="PlatformBehavior{TView,TPlatformView}"/> that controls the Status bar color

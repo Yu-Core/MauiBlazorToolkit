@@ -1,4 +1,4 @@
-﻿namespace MauiBlazorToolKit.Platform;
+﻿namespace MauiBlazorToolkit.Platform;
 
 /// <summary>
 /// Class that hold the method to customize the TitleBar

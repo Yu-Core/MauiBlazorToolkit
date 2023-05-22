@@ -2,7 +2,7 @@
 
 using System.Runtime.CompilerServices;
 
-namespace MauiBlazorToolKit.Extensions;
+namespace MauiBlazorToolkit.Extensions;
 
 static class PropertyChangedEventArgsExtensions
 {

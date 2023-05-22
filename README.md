@@ -35,6 +35,8 @@ public static class MauiProgram
 ## TitleBarBehavior
 `TitleBarBehavior` 允许你自定义设备标题栏的颜色和样式。
 
+注意，只能在Windows和mac OS中使用。如果想改变Android和iOS的状态栏请查看 [.NET MAUI社区工具包](https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/maui/behaviors/statusbar-behavior?tabs=ios)
+
 #### 配置
 一般是修改 `MainPage.xaml`
 ```xaml
@@ -57,4 +59,21 @@ using MauiBlazorToolKit.Platform
 
 TitleBar.SetColor(titleBarColor);
 TitleBar.SetStyle(TitleBarStyle.LightContent);
+```
+
+## WebViewSoftInputPatch
+`WebViewSoftInputPatch` 帮助你的软键盘不会遮挡输入框
+
+注意，只会在Android中生效，只针对于Maui Blazor
+
+#### 配置
+修改 MauiProgram.cs
+```Csharp
+var builder = MauiApp.CreateBuilder();
+builder
+	.UseMauiApp<App>()
+	.UseMauiBlazorToolkit(options =>
+	{
+		options.WebViewSoftInputPatch = true;
+	})
 ```

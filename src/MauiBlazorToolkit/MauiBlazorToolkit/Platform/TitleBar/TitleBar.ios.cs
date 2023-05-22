@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Versioning;
 
-namespace MauiBlazorToolKit.Platform;
+namespace MauiBlazorToolkit.Platform;
 
 [UnsupportedOSPlatform("iOS")]
 static partial class TitleBar

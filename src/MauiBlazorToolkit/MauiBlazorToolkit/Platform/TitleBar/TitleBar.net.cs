@@ -1,4 +1,4 @@
-namespace MauiBlazorToolKit.Platform;
+namespace MauiBlazorToolkit.Platform;
 
 static partial class TitleBar
 {

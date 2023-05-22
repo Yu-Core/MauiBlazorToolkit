@@ -1,15 +1,17 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
-using MauiBlazorToolKit.Platform;
+using MauiBlazorToolkit.Platform;
 
-namespace MauiBlazorToolKit;
+namespace MauiBlazorToolkit;
 
 /// <summary>
 /// Extensions for MauiAppBuilder
 /// </summary>
 public static class AppBuilderExtensions
 {
-	public static MauiAppBuilder UseMauiBlazorToolkit(this MauiAppBuilder builder)
+    public static MauiAppBuilder UseMauiBlazorToolkit(this MauiAppBuilder builder, Action<Options>? options = default)
     {
+        options?.Invoke(new Options());
+
         builder.ConfigureLifecycleEvents(events =>
          {
 #if MACCATALYST
@@ -17,11 +19,21 @@ public static class AppBuilderExtensions
                   .FinishedLaunching((window, args) => {
                       TitleBar.Initialize();
                       return true;
-                  }));
+                  })
+             );
+#elif ANDROID
+             events.AddAndroid(android => android
+                  .OnPostCreate((window,args)=>{
+                      if(Options.InternalWebViewSoftInput) {
+                         WebViewSoftInputPatch.Initialize();
+                      }
+                  })
+             
+             );
 #endif
          });
 
 
         return builder;
-	}
+    }
 }

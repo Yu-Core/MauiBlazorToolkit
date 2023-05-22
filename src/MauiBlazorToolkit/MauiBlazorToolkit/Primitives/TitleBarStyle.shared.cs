@@ -1,4 +1,4 @@
-﻿namespace MauiBlazorToolKit;
+﻿namespace MauiBlazorToolkit;
 
 /// <summary>
 /// Enum that represents the possible style values for the device

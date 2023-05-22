@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Versioning;
 using Microsoft.Maui.Platform;
 
-namespace MauiBlazorToolKit.Platform;
+namespace MauiBlazorToolkit.Platform;
 
 [UnsupportedOSPlatform("Tizen")]
 static partial class TitleBar

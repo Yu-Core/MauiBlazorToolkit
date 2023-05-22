@@ -5,7 +5,7 @@
 In order to use the Yu-Core MAUI Blazor Toolkit you need to call the extension method in your `MauiProgram.cs` file as follows:
 
 ```csharp
-using MauiBlazorToolKit;
+using MauiBlazorToolkit;
 
 public static class MauiProgram
 {
