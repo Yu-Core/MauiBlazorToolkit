@@ -16,9 +16,9 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			// Initialize the Yu-Core MAUI Blazor Toolkit by adding the below line of code
+			// Initialize the MAUI Blazor Toolkit by adding the below line of code
 			.UseMauiBlazorToolKit()
-			// After initializing the Yu-Core MAUI Blazor Toolkit, optionally add additional fonts
+			// After initializing the MAUI Blazor Toolkit, optionally add additional fonts
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -32,7 +32,7 @@ public static class MauiProgram
 }
 ```
 
-## TitleBarBehavior
+## TitleBarBehavior(标题栏颜色)
 `TitleBarBehavior` 允许你自定义设备标题栏的颜色和样式。
 
 注意，只能在Windows和mac OS中使用。如果想改变Android和iOS的状态栏请查看 [.NET MAUI社区工具包](https://learn.microsoft.com/zh-cn/dotnet/communitytoolkit/maui/behaviors/statusbar-behavior?tabs=ios)
@@ -73,7 +73,7 @@ using MauiBlazorToolKit.Platform
 #endif
 ```
 
-## WebViewSoftInputPatch
+## WebViewSoftInputPatch(软键盘遮挡问题)
 `WebViewSoftInputPatch` 帮助你的软键盘不会遮挡输入框
 
 注意，只会在 Android 中生效，只针对于 Maui Blazor
@@ -89,11 +89,14 @@ builder
 		options.WebViewSoftInputPatch = true;
 	})
 ```
-## AppStoreLauncher
+## AppStoreLauncher(打开默认应用商店)
 `AppStoreLauncher` 允许你打开默认的应用商店
-appId在Windows中为App的 ProductId
-appId在iOS/MacCatalyst中为App的 bundle ID
-appId在Android中为App的包名
+
+appId 在 Windows 中为 App 的 ProductId
+
+appId 在 iOS/MacCatalyst 中为 App 的 bundle ID
+
+appId 在 Android 中为 App 的包名
 #### 使用
 ```csharp
 AppStoreLauncher.TryOpenAsync(appId);
