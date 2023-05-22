@@ -1,4 +1,5 @@
-﻿using MauiBlazorToolkit.Sample.Data;
+﻿using CommunityToolkit.Maui;
+using MauiBlazorToolkit.Sample.Data;
 using Microsoft.Extensions.Logging;
 
 namespace MauiBlazorToolkit.Sample
@@ -10,6 +11,7 @@ namespace MauiBlazorToolkit.Sample
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
