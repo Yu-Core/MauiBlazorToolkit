@@ -25,7 +25,7 @@ static partial class TitleBar
 	{
         var color = style switch
         {
-            TitleBarStyle.Default => Colors.White,
+            TitleBarStyle.Default => Colors.Black,
             TitleBarStyle.LightContent => Colors.White,
             TitleBarStyle.DarkContent => Colors.Black,
             _ => throw new NotSupportedException($"{nameof(TitleBarStyle)} {style} is not yet supported on iOS")
