@@ -49,7 +49,7 @@ public static class MauiProgram
              x:Class="MyLittleApp.MainPage">
     
     <ContentPage.Behaviors>
-       <mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="LightContent"></mauiBlazorToolkit:TitleBarBehavior>
+       <mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="DarkContent"></mauiBlazorToolkit:TitleBarBehavior>
     </ContentPage.Behaviors>
 
 </ContentPage>

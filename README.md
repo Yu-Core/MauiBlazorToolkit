@@ -45,7 +45,7 @@ Modify ` MainPage.xaml`
 			xmlns:mauiBlazorToolkit="clr-namespace:MauiBlazorToolkit.Behaviors;assembly=MauiBlazorToolkit"
 			x:Class="MyLittleApp.MainPage">
 	<ContentPage.Behaviors>
-		<mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="LightContent"></mauiBlazorToolkit:TitleBarBehavior>
+		<mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="DarkContent"></mauiBlazorToolkit:TitleBarBehavior>
 	</ContentPage.Behaviors>
 </ContentPage>
 ```
