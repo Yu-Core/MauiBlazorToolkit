@@ -19,14 +19,14 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<PackageId>Yu-Core.MauiBlazorToolkit</PackageId>
 		<Authors>Yu-Core</Authors>
-		<Description>MauiBlazor 工具箱，封装了一些 Maui 和 Maui Blazor 的工具类，例如标题栏颜色的更改。
-
-参考并模仿了 .NET MAUI社区工具包 ,在此特别感谢。</Description>
+		<Description>The Maui Blazor toolbox encapsulates some Maui and Maui Blazor tool classes, such as changing the color of the title bar. 
+Imitated the .NET MAUI Community Toolkit. Thank you very much.</Description>
 		<PackageProjectUrl>https://github.com/Yu-Core/MauiBlazorToolkit</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/Yu-Core/MauiBlazorToolkit</RepositoryUrl>
 		<PackageTags>MAUI;Maui;Blazor;Toolkit</PackageTags>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Version>1.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net7.0-ios')) != true">

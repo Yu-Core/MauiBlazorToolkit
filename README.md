@@ -2,7 +2,7 @@
 English || [简体中文](/README.zh-CN.md)
 
 The Maui Blazor toolbox encapsulates some Maui and Maui Blazor tool classes, such as changing the color of the title bar.
-Referenced and imitated the [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui). Thank you very much.
+Imitated the [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui). Thank you very much.
 
 ## Start
 Install [Yu-Core.MauiBlazorToolkit](https://www.nuget.org/packages/Yu-Core.MauiBlazorToolkit) from NuGet
