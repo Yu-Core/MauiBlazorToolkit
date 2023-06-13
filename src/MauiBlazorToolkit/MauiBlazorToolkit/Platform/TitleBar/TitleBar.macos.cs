@@ -25,7 +25,7 @@ static partial class TitleBar
             TitleBarStyle.DarkContent => Colors.Black,
             _ => throw new NotSupportedException($"{nameof(TitleBarStyle)} {style} is not yet supported on iOS")
         };
-        Resources["PageBackgroundColor"] = color;
+        Resources["PrimaryTextColor"] = color;
     }
 
     public static void Initialize()
