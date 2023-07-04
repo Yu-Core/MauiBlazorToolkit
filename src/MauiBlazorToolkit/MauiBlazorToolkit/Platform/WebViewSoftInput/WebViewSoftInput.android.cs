@@ -1,4 +1,5 @@
 ﻿using Android.Content.Res;
+using Android.Views;
 using Android.Widget;
 using System.Runtime.Versioning;
 using static Android.Resource;
@@ -59,7 +60,14 @@ static partial class WebViewSoftInputPatch
     {
         Rect rect = new Rect();
         MChildOfContent?.GetWindowVisibleDisplayFrame(rect);
-        return rect.Bottom - GetStatusBarHeight();
+        if(IsImmersiveMode())
+        {
+            return rect.Bottom;
+        }
+        else
+        {
+            return rect.Bottom - GetStatusBarHeight();
+        }
     }
 
     static int GetStatusBarHeight()
@@ -72,5 +80,13 @@ static partial class WebViewSoftInputPatch
             result = resources.GetDimensionPixelSize(resourceId);
         }
         return result;
+    }
+
+    static bool IsImmersiveMode()
+    {
+        var window = Activity.Window ?? throw new InvalidOperationException("Activity Window can't be null.");
+        View decorView = window.DecorView;
+        int uiOptions = (int)decorView.SystemUiVisibility;
+        return (uiOptions & (int)SystemUiFlags.Immersive) == (int)SystemUiFlags.Immersive;
     }
 }
