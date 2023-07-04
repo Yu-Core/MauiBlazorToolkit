@@ -1,4 +1,5 @@
-﻿using Android.Widget;
+﻿using Android.Content.Res;
+using Android.Widget;
 using System.Runtime.Versioning;
 using static Android.Resource;
 using Activity = Android.App.Activity;
@@ -58,6 +59,18 @@ static partial class WebViewSoftInputPatch
     {
         Rect rect = new Rect();
         MChildOfContent?.GetWindowVisibleDisplayFrame(rect);
-        return (int)(rect.Bottom - rect.Top);
+        return rect.Bottom - GetStatusBarHeight();
+    }
+
+    static int GetStatusBarHeight()
+    {
+        int result = 0;
+        Resources resources = Activity.Resources ?? throw new InvalidOperationException("Activity Resources can't be null.");
+        int resourceId = resources.GetIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0)
+        {
+            result = resources.GetDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }

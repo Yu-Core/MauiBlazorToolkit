@@ -26,7 +26,6 @@ Imitated the .NET MAUI Community Toolkit. Thank you very much.</Description>
 		<RepositoryUrl>https://github.com/Yu-Core/MauiBlazorToolkit</RepositoryUrl>
 		<PackageTags>MAUI;Maui;Blazor;Toolkit</PackageTags>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
-		<Version>1.0.2</Version>
 	</PropertyGroup>
 
 	<ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net7.0-ios')) != true">
