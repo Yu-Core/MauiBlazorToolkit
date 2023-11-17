@@ -2,9 +2,13 @@
 {
     public sealed partial class AppStoreLauncherImplementation
     {
-        public static string InternalAppStoreUri() => "ms-windows-store://home";
-
-        public static string InternalAppStoreUri(string appId)
+        static string InternalAppStoreAppUri(string appId)
             => $"ms-windows-store://pdp/?ProductId={appId}";
+
+        static Task<bool> PlatformCanOpenAsync(string appId)
+            => Launcher.CanOpenAsync(InternalAppStoreAppUri(appId));
+
+        static Task<bool> PlatformOpenAsync(string appId)
+            => Launcher.OpenAsync(InternalAppStoreAppUri(appId));
     }
 }

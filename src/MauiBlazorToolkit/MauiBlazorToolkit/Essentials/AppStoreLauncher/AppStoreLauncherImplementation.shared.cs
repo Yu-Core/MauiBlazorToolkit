@@ -2,34 +2,21 @@
 {
     public sealed partial class AppStoreLauncherImplementation : IAppStoreLauncher
     {
-        public Task<bool> CanOpenAsync()
-        {
-            return Launcher.CanOpenAsync(InternalAppStoreUri());
-        }
+        public Task<bool> CanOpenAsync(string appId)
+            => PlatformCanOpenAsync(appId);
 
-        public Task<bool> CanOpenAsync(string uri)
-        {
-            return Launcher.CanOpenAsync(InternalAppStoreUri(uri));
-        }
+        public Task<bool> OpenAsync(string appId)
+            => PlatformOpenAsync(appId);
 
-        public Task<bool> OpenAsync()
+        public async Task<bool> TryOpenAsync(string appId)
         {
-            return Launcher.OpenAsync(InternalAppStoreUri());
-        }
+            var canOpen = await CanOpenAsync(appId);
+            if (canOpen)
+            {
+                await OpenAsync(appId);
+            }
 
-        public Task<bool> OpenAsync(string uri)
-        {
-            return Launcher.OpenAsync(InternalAppStoreUri(uri));
-        }
-
-        public Task<bool> TryOpenAsync()
-        {
-            return Launcher.TryOpenAsync(InternalAppStoreUri());
-        }
-
-        public Task<bool> TryOpenAsync(string uri)
-        {
-            return Launcher.TryOpenAsync(InternalAppStoreUri(uri));
+            return canOpen;
         }
     }
 }

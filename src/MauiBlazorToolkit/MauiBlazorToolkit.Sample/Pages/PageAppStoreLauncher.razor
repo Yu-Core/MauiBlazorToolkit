@@ -2,31 +2,22 @@
 @using MauiBlazorToolkit.Essentials
 
 <h3>PageAppStoreLauncher</h3>
+
 <div class="mb-2">
-    <button @onclick="Index">Launch AppStore Index</button>
-</div>
-<div class="mb-2">
-    <button @onclick="Detail">Launch AppStore App Detail</button>
+    <button @onclick="Launcher">Launch NetEaseCloudMusic AppStore App Detail</button>
 </div>
 @code {
-    void Index()
-    {
-        AppStoreLauncher.TryOpenAsync();
-    }
 
-    void Detail()
-    {
-        AppStoreLauncher.TryOpenAsync(NetEaseCloudMusicAppId());
-    }
+#if WINDOWS
+    string NetEaseCloudMusicAppId = "9NBLGGH6G0JF";
+#elif IOS || MACCATALYST
+    string NetEaseCloudMusicAppId = "590338362";
+#else
+    string NetEaseCloudMusicAppId = "com.netease.cloudmusic";
+#endif
 
-    string NetEaseCloudMusicAppId()
+    void Launcher()
     {
-        #if WINDOWS
-            return "9NBLGGH6G0JF";
-        #elif IOS || MACCATALYST
-            return "590338362";
-        #else
-            return "com.netease.cloudmusic";
-        #endif
+        AppStoreLauncher.TryOpenAsync(NetEaseCloudMusicAppId);
     }
 }

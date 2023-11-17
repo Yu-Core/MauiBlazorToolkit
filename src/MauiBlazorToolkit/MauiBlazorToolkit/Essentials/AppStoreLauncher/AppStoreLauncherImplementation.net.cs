@@ -2,8 +2,8 @@
 {
     public sealed partial class AppStoreLauncherImplementation
     {
-        public string InternalAppStoreUri() => throw new NotSupportedException($"{nameof(InternalAppStoreUri)} is not supported");
+        static Task<bool> PlatformCanOpenAsync(string appId) => throw new NotSupportedException($"{nameof(PlatformCanOpenAsync)} is not supported");
 
-        public string InternalAppStoreUri(string appId) => throw new NotSupportedException($"{nameof(InternalAppStoreUri)} is not supported");
+        static Task<bool> PlatformOpenAsync(string appId) => throw new NotSupportedException($"{nameof(PlatformOpenAsync)} is not supported");
     }
 }
