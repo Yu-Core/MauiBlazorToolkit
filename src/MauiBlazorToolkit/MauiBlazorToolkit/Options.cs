@@ -9,16 +9,19 @@ namespace MauiBlazorToolkit
     public class Options
     {
         internal static bool InternalWebViewSoftInput { get; private set; }
-        internal static bool InternalHiddenMacTitleVisibility { get; private set; }
+
+        internal static bool InternalTitleBar { get; private set; }
+
         public bool WebViewSoftInputPatch
         {
             get => InternalWebViewSoftInput; 
             set => InternalWebViewSoftInput = value;
         }
-        public bool HiddenMacTitleVisibility
+
+        public bool TitleBar
         {
-            get => InternalHiddenMacTitleVisibility;
-            set => InternalHiddenMacTitleVisibility = value;
+            get => InternalTitleBar;
+            set => InternalTitleBar = value;
         }
     }
 }

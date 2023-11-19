@@ -2,6 +2,7 @@
 English || [简体中文](/README.zh-CN.md)
 
 The Maui Blazor toolbox encapsulates some Maui and Maui Blazor tool classes, such as changing the color of the title bar.
+
 Imitated the [.NET MAUI Community Toolkit](https://github.com/CommunityToolkit/Maui). Thank you very much.
 
 ## Start
@@ -9,28 +10,32 @@ Install [Yu-Core.MauiBlazorToolkit](https://www.nuget.org/packages/Yu-Core.MauiB
 
 To use the MauiBlazor toolkit, you need to call the extension method in the file, as shown below: MauiProgram.cs
 
-```csharp
+```Csharp
 using MauiBlazorToolKit;
+
 public static class MauiProgram
 {
-public static MauiApp CreateMauiApp()
-{
-	var builder = MauiApp.CreateBuilder();
-	builder
-	.UseMauiApp<App>()
-	// Initialize the MAUI Blazor Toolkit by adding the below line of code
-	.UseMauiBlazorToolkit()
-	// After initializing the MAUI Blazor Toolkit, optionally add additional fonts
-	.ConfigureFonts(fonts =>
+	public static MauiApp CreateMauiApp()
 	{
-		fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-		fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-	});
-	// Continue initializing your .NET MAUI App here
-	return builder.Build();
+		var builder = MauiApp.CreateBuilder();
+		builder
+			.UseMauiApp<App>()
+			// Initialize the MAUI Blazor Toolkit by adding the below line of code
+			.UseMauiBlazorToolkit()
+			// After initializing the MAUI Blazor Toolkit, optionally add additional fonts
+			.ConfigureFonts(fonts =>
+			{
+				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+			});
+
+		// Continue initializing your .NET MAUI App here
+
+		return builder.Build();
 	}
 }
 ```
+
 ## TitleBarBehavior (Title Bar Color)
 
 `TitleBarBehavior` allows you to customize the color and style of the device's title bar.
@@ -58,7 +63,7 @@ Modify `MauiProgram.cs`
 	.UseMauiApp<App>()
 	.UseMauiBlazorToolkit(options =>
 	{
-		options.HiddenMacTitleVisibility = true;
+		options.TitleBar = true;
 	})
 ```
 
@@ -66,11 +71,14 @@ Modify `MauiProgram.cs`
 
 ```csharp
 using MauiBlazorToolKit.Platform
+
 #if Windows || MacCatalyst
 	TitleBar.SetColor(titleBarColor);
-	TitleBar.SetStyle(TitleBarStyle.LightContent);
+	TitleBar.SetStyle(TitleBarStyle.DarkContent);
 #endif
 ```
+
+> TitleBar.SetStyle() temporarily invalid, cannot change the text color of the button
 
 ## WebViewSoftInputPatch (Soft Keyboard Occlusion Problem)
 `WebViewSoftInputPatch ` helps your soft keyboard not block input boxes

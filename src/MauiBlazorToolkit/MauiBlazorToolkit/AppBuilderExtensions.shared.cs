@@ -1,5 +1,5 @@
-﻿using Microsoft.Maui.LifecycleEvents;
-using MauiBlazorToolkit.Platform;
+﻿using MauiBlazorToolkit.Platform;
+using Microsoft.Maui.LifecycleEvents;
 
 namespace MauiBlazorToolkit;
 
@@ -13,11 +13,22 @@ public static class AppBuilderExtensions
         options?.Invoke(new Options());
 
         builder.ConfigureLifecycleEvents(events =>
-         {
-#if MACCATALYST
+        {
+#if WINDOWS
+    events
+        .AddWindows (windows => {
+            windows.OnWindowCreated ((window) => 
+            {
+                if (Options.InternalTitleBar)
+                {
+                    TitleBar.Initialize();
+                }
+            });
+        });
+#elif MACCATALYST
              events.AddiOS(ios => ios
                   .FinishedLaunching((window, args) => {
-                      if(Options.InternalHiddenMacTitleVisibility)
+                      if(Options.InternalTitleBar)
                       {
                          TitleBar.Initialize();
                       }
@@ -35,7 +46,7 @@ public static class AppBuilderExtensions
              
              );
 #endif
-         });
+        });
 
 
         return builder;

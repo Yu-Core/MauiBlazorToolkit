@@ -9,6 +9,7 @@ MauiBlazor 工具箱，封装了一些 Maui 和 Maui Blazor 的工具类，例如标题栏颜色的更改
 从 Nuget 安装 [Yu-Core.MauiBlazorToolkit](https://www.nuget.org/packages/Yu-Core.MauiBlazorToolkit)
 
 若要使用 MauiBlazor 工具箱，需要在文件中调用扩展方法，如下所示：MauiProgram.cs
+
 ```Csharp
 using MauiBlazorToolKit;
 
@@ -54,6 +55,7 @@ public static class MauiProgram
 
 </ContentPage>
 ```
+
 修改 `MauiProgram.cs`
 ```csharp
 var builder = MauiApp.CreateBuilder();
@@ -61,7 +63,7 @@ builder
 	.UseMauiApp<App>()
 	.UseMauiBlazorToolkit(options =>
 	{
-		options.HiddenMacTitleVisibility = true;
+		options.TitleBar = true;
 	})
 ```
 
@@ -72,9 +74,11 @@ using MauiBlazorToolKit.Platform
 
 #if Windows || MacCatalyst
 	TitleBar.SetColor(titleBarColor);
-	TitleBar.SetStyle(TitleBarStyle.LightContent);
+	TitleBar.SetStyle(TitleBarStyle.DarkContent);
 #endif
 ```
+
+> TitleBar.SetStyle() 暂时无效，不能改变按钮的文本颜色
 
 ## WebViewSoftInputPatch(软键盘遮挡问题)
 `WebViewSoftInputPatch` 帮助你的软键盘不会遮挡输入框

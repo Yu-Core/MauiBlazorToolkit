@@ -1,8 +1,6 @@
 ﻿using Microsoft.Maui.Platform;
-using WinRT.Interop;
+using Microsoft.UI.Xaml.Markup;
 using System.Runtime.Versioning;
-using PInvoke;
-using static PInvoke.User32;
 
 namespace MauiBlazorToolkit.Platform;
 
@@ -16,43 +14,25 @@ static partial class TitleBar
 
     static void PlatformSetColor(Color color)
 	{
-        Resources["WindowCaptionBackground"] = color.ToWindowsColor();
-        Resources["WindowCaptionBackgroundDisabled"] = color.ToWindowsColor();
-        TriggertTitleBarRepaint();
+        Resources["TitleBarBackground"] = color.ToWindowsColor();
+        if (NativeWindow is not null && NativeWindow.Content is Microsoft.UI.Xaml.FrameworkElement fe)
+        {
+            var requestedTheme = fe.RequestedTheme;
+            fe.RequestedTheme = Microsoft.UI.Xaml.ElementTheme.Light;
+            fe.RequestedTheme = Microsoft.UI.Xaml.ElementTheme.Dark;
+            fe.RequestedTheme = requestedTheme;
+        }
     }
 
 	static void PlatformSetStyle(TitleBarStyle style)
 	{
-        var color = style switch
-        {
-            TitleBarStyle.Default => Colors.Black,
-            TitleBarStyle.LightContent => Colors.White,
-            TitleBarStyle.DarkContent => Colors.Black,
-            _ => throw new NotSupportedException($"{nameof(TitleBarStyle)} {style} is not yet supported on iOS")
-        };
-        Resources["WindowCaptionForeground"] = color.ToWindowsColor();
-        Resources["WindowCaptionForegroundDisabled"] = color.ToWindowsColor();
-        TriggertTitleBarRepaint();
+        //图标颜色暂时无法更改
     }
 
-    static void TriggertTitleBarRepaint()
+    public static void Initialize()
     {
-        if (NativeWindow is null)
-        {
-            return;
-        }
-
-        var hWnd = WindowNative.GetWindowHandle(NativeWindow);
-        var activeWindow = User32.GetActiveWindow();
-        if (hWnd == activeWindow)
-        {
-            User32.PostMessage(hWnd, WindowMessage.WM_ACTIVATE, new IntPtr((int)0x00), IntPtr.Zero);
-            User32.PostMessage(hWnd, WindowMessage.WM_ACTIVATE, new IntPtr((int)0x01), IntPtr.Zero);
-        }
-        else
-        {
-            User32.PostMessage(hWnd, WindowMessage.WM_ACTIVATE, new IntPtr((int)0x01), IntPtr.Zero);
-            User32.PostMessage(hWnd, WindowMessage.WM_ACTIVATE, new IntPtr((int)0x00), IntPtr.Zero);
-        }
+        string xaml = "<DataTemplate xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"><Grid Background=\"{ThemeResource TitleBarBackground}\"></Grid></DataTemplate>";
+        Microsoft.UI.Xaml.DataTemplate dataTemplate = (Microsoft.UI.Xaml.DataTemplate)XamlReader.Load(xaml);
+        Resources["MauiAppTitleBarTemplate"] = dataTemplate;
     }
 }
