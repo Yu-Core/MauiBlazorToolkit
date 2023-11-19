@@ -13,7 +13,6 @@ namespace MauiBlazorToolkit.Sample
                 .UseMauiBlazorToolkit(options =>
                 {
                     options.TitleBar = true;
-                    options.WebViewSoftInputPatch = true;
                 })
                 .ConfigureFonts(fonts =>
                 {

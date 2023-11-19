@@ -27,27 +27,16 @@ namespace MauiBlazorToolkit.Extensions
                         });
                     });
 #elif MACCATALYST
-            events.AddiOS(ios => ios
-                 .FinishedLaunching((window, args) =>
-                 {
-                     if (Options.InternalTitleBar)
+                events.AddiOS(ios => ios
+                     .FinishedLaunching((window, args) =>
                      {
-                         TitleBar.Initialize();
-                     }
-                     return true;
-                 })
-            );
-#elif ANDROID
-            events.AddAndroid(android => android
-                 .OnPostCreate((window, args) =>
-                 {
-                     if (Options.InternalWebViewSoftInput)
-                     {
-                         WebViewSoftInputPatch.Initialize();
-                     }
-                 })
-
-            );
+                         if (Options.InternalTitleBar)
+                         {
+                             TitleBar.Initialize();
+                         }
+                         return true;
+                     })
+                );
 #endif
             });
 

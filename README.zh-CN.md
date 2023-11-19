@@ -80,22 +80,6 @@ using MauiBlazorToolKit.Platform
 
 > TitleBar.SetStyle() 暂时无效，不能改变按钮的文本颜色
 
-## WebViewSoftInputPatch(软键盘遮挡问题)
-`WebViewSoftInputPatch` 帮助你的软键盘不会遮挡输入框
-
-注意，只会在 Android 中生效，只针对于 Maui Blazor
-
-#### 配置
-修改 `MauiProgram.cs`
-```csharp
-var builder = MauiApp.CreateBuilder();
-builder
-	.UseMauiApp<App>()
-	.UseMauiBlazorToolkit(options =>
-	{
-		options.WebViewSoftInputPatch = true;
-	})
-```
 ## AppStoreLauncher(打开默认应用商店)
 `AppStoreLauncher` 允许你打开默认的应用商店
 
@@ -104,6 +88,7 @@ appId 在 Windows 中为 App 的 ProductId
 appId 在 iOS/MacCatalyst 中为 App 的 bundle ID
 
 appId 在 Android 中为 App 的包名
+
 #### 使用
 ```csharp
 AppStoreLauncher.TryOpenAsync(appId);

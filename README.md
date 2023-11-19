@@ -80,21 +80,6 @@ using MauiBlazorToolKit.Platform
 
 > TitleBar.SetStyle() temporarily invalid, cannot change the text color of the button
 
-## WebViewSoftInputPatch (Soft Keyboard Occlusion Problem)
-`WebViewSoftInputPatch ` helps your soft keyboard not block input boxes
-Note that it will only take effect in Android and only for Maui Blazor
-
-#### Configuration
-Modify ` MauiProgram.cs`
-```csharp
-	var builder = MauiApp.CreateBuilder();
-	builder
-	.UseMauiApp<App>()
-	.UseMauiBlazorToolkit(options =>
-	{
-	options.WebViewSoftInputPatch = true;
-	})
-```
 ## AppStoreLauncher (opens the default app store)
 `AppStoreLauncher` allows you to open the default app store
 
