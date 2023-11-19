@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiBlazorToolkit.Extensions;
+using Microsoft.Extensions.Logging;
 
 namespace MauiBlazorToolkit.Sample
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MauiBlazorToolkit
+﻿namespace MauiBlazorToolkit.Extensions
 {
     public class Options
     {
@@ -14,7 +8,7 @@ namespace MauiBlazorToolkit
 
         public bool WebViewSoftInputPatch
         {
-            get => InternalWebViewSoftInput; 
+            get => InternalWebViewSoftInput;
             set => InternalWebViewSoftInput = value;
         }
 
