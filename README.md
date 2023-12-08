@@ -78,8 +78,6 @@ using MauiBlazorToolKit.Platform
 #endif
 ```
 
-> TitleBar.SetStyle() temporarily invalid, cannot change the text color of the button
-
 ## AppStoreLauncher (opens the default app store)
 `AppStoreLauncher` allows you to open the default app store
 

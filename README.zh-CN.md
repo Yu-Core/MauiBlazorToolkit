@@ -78,8 +78,6 @@ using MauiBlazorToolKit.Platform
 #endif
 ```
 
-> TitleBar.SetStyle() 暂时无效，不能改变按钮的文本颜色
-
 ## AppStoreLauncher(打开默认应用商店)
 `AppStoreLauncher` 允许你打开默认的应用商店
 

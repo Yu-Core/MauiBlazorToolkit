@@ -7,13 +7,14 @@ namespace MauiBlazorToolkit.Platform;
 [SupportedOSPlatform("Windows")]
 static partial class TitleBar
 {
-	static Microsoft.UI.Xaml.Window? NativeWindow =>
+    static Microsoft.UI.Xaml.Window? NativeWindow =>
         (Microsoft.UI.Xaml.Window?)Application.Current?.Windows.FirstOrDefault()?.Handler?.PlatformView;
+
     static Microsoft.UI.Xaml.ResourceDictionary Resources =>
         Microsoft.UI.Xaml.Application.Current.Resources;
 
     static void PlatformSetColor(Color color)
-	{
+    {
         Resources["TitleBarBackground"] = color.ToWindowsColor();
         if (NativeWindow is not null && NativeWindow.Content is Microsoft.UI.Xaml.FrameworkElement fe)
         {
@@ -24,9 +25,20 @@ static partial class TitleBar
         }
     }
 
-	static void PlatformSetStyle(TitleBarStyle style)
-	{
-        //图标颜色暂时无法更改
+    static void PlatformSetStyle(TitleBarStyle style)
+    {
+        if (NativeWindow is not null)
+        {
+            var color = style switch
+            {
+                TitleBarStyle.Default => Colors.Black,
+                TitleBarStyle.LightContent => Colors.White,
+                TitleBarStyle.DarkContent => Colors.Black,
+                _ => throw new NotSupportedException($"{nameof(TitleBarStyle)} {style} is not yet supported on Windows")
+            };
+            var titleBar = NativeWindow.AppWindow.TitleBar;
+            titleBar.ButtonForegroundColor = color.ToWindowsColor();
+        }
     }
 
     public static void Initialize()

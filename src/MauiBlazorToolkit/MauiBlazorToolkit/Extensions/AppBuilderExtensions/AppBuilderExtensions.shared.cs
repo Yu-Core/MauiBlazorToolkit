@@ -15,28 +15,28 @@ namespace MauiBlazorToolkit.Extensions
             builder.ConfigureLifecycleEvents(events =>
             {
 #if WINDOWS
-                events
-                    .AddWindows(windows =>
+                events.AddWindows(windows =>
+                {
+                    windows.OnWindowCreated((window) =>
                     {
-                        windows.OnWindowCreated((window) =>
+                        if (Options.InternalTitleBar)
                         {
-                            if (Options.InternalTitleBar)
-                            {
-                                TitleBar.Initialize();
-                            }
-                        });
+                            TitleBar.Initialize();
+                        }
                     });
+                });
 #elif MACCATALYST
-                events.AddiOS(ios => ios
-                     .FinishedLaunching((window, args) =>
-                     {
-                         if (Options.InternalTitleBar)
-                         {
-                             TitleBar.Initialize();
-                         }
-                         return true;
-                     })
-                );
+                events.AddiOS(ios =>
+                {
+                    ios.FinishedLaunching((window, args) =>
+                    {
+                        if (Options.InternalTitleBar)
+                        {
+                            TitleBar.Initialize();
+                        }
+                        return true;
+                    });
+                });
 #endif
             });
 
