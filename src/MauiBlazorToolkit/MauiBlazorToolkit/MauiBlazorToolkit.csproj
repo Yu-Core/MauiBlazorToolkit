@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	
+
 	<PropertyGroup>
 		<TargetFrameworks>net8.0;net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
@@ -15,7 +15,7 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 		<Nullable>enable</Nullable>
-		<MauiVersion>8.0.14</MauiVersion>
+		<MauiVersion>8.0.*</MauiVersion>
 		<PackageId>Yu-Core.MauiBlazorToolkit</PackageId>
 		<Authors>Yu-Core</Authors>
 		<Description>
@@ -28,49 +28,49 @@
 		<PackageTags>MAUI;Maui;Blazor;Toolkit</PackageTags>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 	</PropertyGroup>
-	
+
 	<ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net8.0-ios')) != true">
 		<Compile Remove="**\**\*.ios.cs" />
 		<None Include="**\**\*.ios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 		<Compile Remove="**\ios\**\*.cs" />
 		<None Include="**\ios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true AND $(TargetFramework.StartsWith('net8.0-maccatalyst')) != true">
 		<Compile Remove="**\*.macos.cs" />
 		<None Include="**\*.macos.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 		<Compile Remove="**\macos\**\*.cs" />
 		<None Include="**\macos\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="$(TargetFramework.StartsWith('Xamarin.Mac')) != true AND $(TargetFramework.StartsWith('Xamarin.iOS')) != true AND $(TargetFramework.StartsWith('net8.0-ios')) != true AND $(TargetFramework.StartsWith('net8.0-maccatalyst')) != true">
 		<Compile Remove="**\*.macios.cs" />
 		<None Include="**\*.macios.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 		<Compile Remove="**\macios\**\*.cs" />
 		<None Include="**\macios\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="$(TargetFramework.StartsWith('MonoAndroid')) != true AND $(TargetFramework.StartsWith('net8.0-android')) != true ">
 		<Compile Remove="**\**\*.android.cs" />
 		<None Include="**\**\*.android.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 		<Compile Remove="**\android\**\*.cs" />
 		<None Include="**\android\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="$(TargetFramework.Contains('-windows')) != true ">
 		<Compile Remove="**\*.windows.cs" />
 		<None Include="**\*.windows.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 		<Compile Remove="**\windows\**\*.cs" />
 		<None Include="**\windows\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="$(TargetFramework.Contains('-tizen')) != true ">
 		<Compile Remove="**\*.tizen.cs" />
 		<None Include="**\*.tizen.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 		<Compile Remove="**\tizen\**\*.cs" />
 		<None Include="**\tizen\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition="!($(TargetFramework.StartsWith('net')) == true AND $(TargetFramework.EndsWith('.0')) == true AND $(TargetFramework.Contains('-')) != true)">
 		<!-- e.g net6.0 or net7.0 -->
 		<Compile Remove="**\*.net.cs" />
@@ -78,12 +78,12 @@
 		<Compile Remove="**\net\**\*.cs" />
 		<None Include="**\net\**\*.cs" Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder)" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<None Include="..\..\..\LICENSE">
 			<Pack>True</Pack>
@@ -94,5 +94,5 @@
 			<PackagePath>\</PackagePath>
 		</None>
 	</ItemGroup>
-	
+
 </Project>
