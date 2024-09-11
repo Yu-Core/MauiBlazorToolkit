@@ -1,0 +1,39 @@
+﻿@page "/androidFilePicker"
+
+<h3>AndroidFilePickerPage</h3>
+<div class="mb-2">
+    <button @onclick="PickMultipleFileAsync">PickMultipleFileAsync</button>
+</div>
+<div class="mb-2">
+    <button @onclick="PickFileAsync">PickFileAsync</button>
+</div>
+
+@foreach (var item in fileNames)
+{
+    <div>@item</div>
+}
+
+@code {
+    List<string> fileNames = [];
+    public async Task PickMultipleFileAsync()
+    {
+#if ANDROID
+    var fileResults = await AndroidFilePicker.PickMultipleAsync();
+    if (fileResults is not null && fileResults.Any())
+    {
+    fileNames = fileResults.Select(it => it.FileName).ToList();
+    }
+#endif
+    }
+
+    public async Task PickFileAsync()
+    {
+#if ANDROID
+    var fileResult = await AndroidFilePicker.PickAsync();
+    if (fileResult is not null)
+    {
+    fileNames = [fileResult.FileName];
+    }
+#endif
+    }
+}
