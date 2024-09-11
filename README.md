@@ -91,3 +91,35 @@ The appId is the package name of the app in Android
 ```csharp
 AppStoreLauncher.TryOpenAsync(appId);
 ```
+
+## MediaFilePicker(Media file picker)
+`MediaFilePicker` Allow you to select one or multiple media files
+Note that it can only be used on Android and iOS.
+
+#### Using
+
+```csharp
+using MauiBlazorToolkit.Essentials
+
+#if Android || iOS
+	FileResult? photoFileResult = await MediaFilePicker.Default.PickPhotoAsync();
+	FileResult? videoFileResult = await MediaFilePicker.Default.PickVideoAsync();
+	IEnumerable<FileResult>? photoFileResults = await MediaFilePicker.Default.PickMultiplePhotoAsync();
+	IEnumerable<FileResult>? videoFileResults = await MediaFilePicker.Default.PickMultipleVideoAsync();
+#endif
+```
+
+## AndroidFilePicker(Android file picker)
+`AndroidFilePicker` Improvement of FilePicker in MAUI Essentials with more options for selection
+Note that it can only be used in Android and may be deleted in the future
+
+#### Using
+
+```csharp
+using MauiBlazorToolkit.Essentials
+
+#if Android
+	FileResult? fileResult = await AndroidFilePicker.Default.PickAsync();
+	IEnumerable<FileResult>? fileResults = await AndroidFilePicker.Default.PickMultipleAsync();
+#endif
+```

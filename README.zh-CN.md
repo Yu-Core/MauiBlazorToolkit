@@ -91,3 +91,35 @@ appId 在 Android 中为 App 的包名
 ```csharp
 AppStoreLauncher.TryOpenAsync(appId);
 ```
+
+## MediaFilePicker(媒体文件选择器)
+`MediaFilePicker` 允许你单选或多选媒体文件
+注意，只能在Android和iOS中使用。
+
+#### 使用
+
+```csharp
+using MauiBlazorToolkit.Essentials
+
+#if Android || iOS
+	FileResult? photoFileResult = await MediaFilePicker.Default.PickPhotoAsync();
+	FileResult? videoFileResult = await MediaFilePicker.Default.PickVideoAsync();
+	IEnumerable<FileResult>? photoFileResults = await MediaFilePicker.Default.PickMultiplePhotoAsync();
+	IEnumerable<FileResult>? videoFileResults = await MediaFilePicker.Default.PickMultipleVideoAsync();
+#endif
+```
+
+## AndroidFilePicker(安卓文件选择器)
+`AndroidFilePicker` MAUI Essentials中的FilePicker的改进，选择时有更多的选项
+注意，只能在Android中使用，并且未来可能删除
+
+#### 使用
+
+```csharp
+using MauiBlazorToolkit.Essentials
+
+#if Android
+	FileResult? fileResult = await AndroidFilePicker.Default.PickAsync();
+	IEnumerable<FileResult>? fileResults = await AndroidFilePicker.Default.PickMultipleAsync();
+#endif
+```
