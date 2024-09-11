@@ -1,4 +1,5 @@
-﻿using MauiBlazorToolkit.Platform;
+﻿using MauiBlazorToolkit.Essentials;
+using MauiBlazorToolkit.Platform;
 using Microsoft.Maui.LifecycleEvents;
 
 namespace MauiBlazorToolkit.Extensions
@@ -35,6 +36,18 @@ namespace MauiBlazorToolkit.Extensions
                             TitleBar.Initialize();
                         }
                         return true;
+                    });
+                });
+#elif ANDROID
+                events.AddAndroid(android =>
+                {
+                    android.OnCreate((activity, bundle) =>
+                    {
+                        if (OperatingSystem.IsAndroidVersionAtLeast(33) && activity is AndroidX.Activity.ComponentActivity componentActivity)
+                        {
+                            PickVisualMediaForResult.Default.Register(componentActivity);
+                            PickMultipleVisualMediaForResult.Default.Register(componentActivity);
+                        }
                     });
                 });
 #endif

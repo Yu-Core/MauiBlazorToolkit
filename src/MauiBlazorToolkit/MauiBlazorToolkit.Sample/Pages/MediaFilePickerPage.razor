@@ -1,0 +1,66 @@
+﻿@page "/mediaFilePicker"
+@using MauiBlazorToolkit.Essentials
+
+<h3>MediaFilePicker</h3>
+<div class="mb-2">
+    <button @onclick="PickMultiplePhotoAsync">PickMultiplePhotoAsync</button>
+</div>
+<div class="mb-2">
+    <button @onclick="PickMultipleVideoAsync">PickMultipleVideoAsync</button>
+</div>
+<div class="mb-2">
+    <button @onclick="PickPhotoAsync">PickPhotoAsync</button>
+</div>
+<div class="mb-2">
+    <button @onclick="PickVideoAsync">PickVideoAsync</button>
+</div>
+@foreach (var item in imageFileNames)
+{
+    <div>@item</div>
+}
+
+@foreach (var item in videoFileNames)
+{
+    <div>@item</div>
+}
+
+@code {
+    List<string> imageFileNames = [];
+    List<string> videoFileNames = [];
+
+    public async Task PickMultiplePhotoAsync()
+    {
+        var fileResults = await MediaFilePicker.PickMultiplePhotoAsync();
+        if (fileResults is not null)
+        {
+            imageFileNames = fileResults.Select(it => it.FileName).ToList();
+        }
+    }
+
+    public async Task PickMultipleVideoAsync()
+    {
+        var fileResults = await MediaFilePicker.PickMultipleVideoAsync();
+        if (fileResults is not null)
+        {
+            imageFileNames = fileResults.Select(it => it.FileName).ToList();
+        }
+    }
+
+    public async Task PickPhotoAsync()
+    {
+        var fileResult = await MediaFilePicker.PickPhotoAsync();
+        if (fileResult is not null)
+        {
+            imageFileNames = [fileResult.FileName];
+        }
+    }
+
+    public async Task PickVideoAsync()
+    {
+        var fileResult = await MediaFilePicker.PickVideoAsync();
+        if (fileResult is not null)
+        {
+            imageFileNames = [fileResult.FileName];
+        }
+    }
+}
