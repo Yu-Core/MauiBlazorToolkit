@@ -15,9 +15,10 @@ namespace MauiBlazorToolkit.Essentials
         async Task<IEnumerable<FileResult>> PlatformPickAsync(PickOptions? options, bool allowMultiple = false)
         {
             // Essentials supports >= API 19 where this action is available
-            var action = Intent.ActionGetContent;
+            var action = Intent.ActionOpenDocument;
 
             var intent = new Intent(action);
+            intent.AddCategory(Intent.CategoryOpenable);
             intent.SetType(FileMimeTypes.All);
             intent.PutExtra(Intent.ExtraAllowMultiple, allowMultiple);
 
