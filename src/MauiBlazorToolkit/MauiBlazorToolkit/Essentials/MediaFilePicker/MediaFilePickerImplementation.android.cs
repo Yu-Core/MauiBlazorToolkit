@@ -33,13 +33,13 @@ namespace MauiBlazorToolkit.Essentials
 
         private static async Task<FileResult?> PlatformPickAsync(bool photo)
         {
-            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+            if (IsPhotoPickerAvailable())
             {
-                return await PlatformPickAsync33Greater(photo);
+                return await PlatformPickAsyncUsePhotoPicker(photo);
             }
             else
             {
-                var fileResults = await PlatformPickAsync33Below(photo);
+                var fileResults = await PlatformPickAsyncUseIntent(photo);
                 if (fileResults is null || fileResults.Count == 0)
                 {
                     return null;
@@ -51,17 +51,23 @@ namespace MauiBlazorToolkit.Essentials
 
         private static async Task<IEnumerable<FileResult>?> PlatformPickMultipleAsync(bool photo)
         {
-            if (OperatingSystem.IsAndroidVersionAtLeast(33))
+            if (IsPhotoPickerAvailable())
             {
-                return await PlatformPickMultipleAsync33OrGreater(photo);
+                return await PlatformPickMultipleAsyncUsePhotoPicker(photo);
             }
             else
             {
-                return await PlatformPickAsync33Below(photo, allowMultiple: true);
+                return await PlatformPickAsyncUseIntent(photo, allowMultiple: true);
             }
         }
 
-        private static async Task<FileResult?> PlatformPickAsync33Greater(bool photo)
+        private static bool IsPhotoPickerAvailable()
+        {
+            var activity = Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+            return activity is not null && PickVisualMedia.InvokeIsPhotoPickerAvailable(activity);
+        }
+
+        private static async Task<FileResult?> PlatformPickAsyncUsePhotoPicker(bool photo)
         {
             var pickVisualMediaRequest = BuilderPickVisualMediaRequest(photo);
             var androidUri = await PickVisualMediaForResult.Default.Launch(pickVisualMediaRequest);
@@ -74,7 +80,7 @@ namespace MauiBlazorToolkit.Essentials
             return new FileResult(path);
         }
 
-        private static async Task<IEnumerable<FileResult>?> PlatformPickMultipleAsync33OrGreater(bool photo)
+        private static async Task<IEnumerable<FileResult>?> PlatformPickMultipleAsyncUsePhotoPicker(bool photo)
         {
             var pickVisualMediaRequest = BuilderPickVisualMediaRequest(photo);
             var list = await PickMultipleVisualMediaForResult.Default.Launch(pickVisualMediaRequest);
@@ -88,7 +94,7 @@ namespace MauiBlazorToolkit.Essentials
             return fileResults;
         }
 
-        private static async Task<List<FileResult>?> PlatformPickAsync33Below(bool photo, bool allowMultiple = false)
+        private static async Task<List<FileResult>?> PlatformPickAsyncUseIntent(bool photo, bool allowMultiple = false)
         {
             var intent = new Intent(Intent.ActionGetContent);
             intent.SetType(photo ? FileMimeTypes.ImageAll : FileMimeTypes.VideoAll);

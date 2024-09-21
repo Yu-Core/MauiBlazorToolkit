@@ -1,6 +1,9 @@
 ﻿using MauiBlazorToolkit.Essentials;
 using MauiBlazorToolkit.Platform;
 using Microsoft.Maui.LifecycleEvents;
+#if ANDROID
+using static AndroidX.Activity.Result.Contract.ActivityResultContracts;
+#endif
 
 namespace MauiBlazorToolkit.Extensions
 {
@@ -43,7 +46,7 @@ namespace MauiBlazorToolkit.Extensions
                 {
                     android.OnCreate((activity, bundle) =>
                     {
-                        if (OperatingSystem.IsAndroidVersionAtLeast(33) && activity is AndroidX.Activity.ComponentActivity componentActivity)
+                        if (PickVisualMedia.InvokeIsPhotoPickerAvailable(activity) && activity is AndroidX.Activity.ComponentActivity componentActivity)
                         {
                             PickVisualMediaForResult.Default.Register(componentActivity);
                             PickMultipleVisualMediaForResult.Default.Register(componentActivity);
