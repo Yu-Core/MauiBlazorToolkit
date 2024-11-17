@@ -12,7 +12,8 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<EnableDefaultCssItems>false</EnableDefaultCssItems>
 		<MauiVersion>8.0.*</MauiVersion>
-
+		<WindowsPackageType>None</WindowsPackageType>
+		
 		<!-- Display name -->
 		<ApplicationTitle>MauiBlazorToolkit.Sample</ApplicationTitle>
 
