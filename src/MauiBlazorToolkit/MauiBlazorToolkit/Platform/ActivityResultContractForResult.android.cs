@@ -4,7 +4,7 @@ using AndroidX.Activity.Result.Contract;
 
 namespace MauiBlazorToolkit.Platform
 {
-    public class ActivityResultContractForResult<TActivityResultContract, TResult> where TActivityResultContract : ActivityResultContract, new()
+    public class ActivityResultContractForResult<TActivityResultContract, TResult> where TActivityResultContract : ActivityResultContract, new() where TResult : Java.Lang.Object
     {
         protected ActivityResultLauncher? launcher;
         protected TaskCompletionSource<TResult>? tcs = null;

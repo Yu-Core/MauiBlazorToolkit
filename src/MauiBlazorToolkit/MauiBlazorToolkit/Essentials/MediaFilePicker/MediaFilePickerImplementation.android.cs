@@ -84,7 +84,7 @@ namespace MauiBlazorToolkit.Essentials
         {
             var pickVisualMediaRequest = BuilderPickVisualMediaRequest(photo);
             var list = await PickMultipleVisualMediaForResult.Default.Launch(pickVisualMediaRequest);
-            if (list.IsEmpty)
+            if (list is null || list.IsEmpty)
             {
                 return null;
             }

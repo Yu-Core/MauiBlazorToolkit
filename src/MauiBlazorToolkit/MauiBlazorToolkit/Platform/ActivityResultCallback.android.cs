@@ -4,7 +4,7 @@ using JavaObject = Java.Lang.Object;
 #nullable disable
 namespace MauiBlazorToolkit
 {
-    public class ActivityResultCallback<T> : JavaObject, IActivityResultCallback
+    public class ActivityResultCallback<T> : JavaObject, IActivityResultCallback where T : JavaObject
     {
         readonly Action<T> _callback;
 
@@ -12,10 +12,7 @@ namespace MauiBlazorToolkit
 
         public void OnActivityResult(JavaObject result)
         {
-            if (result is T obj)
-            {
-                _callback(obj);
-            }
+            _callback(result as T);
         }
     }
 }
