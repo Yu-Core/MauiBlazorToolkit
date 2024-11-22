@@ -1,8 +1,8 @@
 ﻿
 using MauiBlazorToolkit.Extensions;
-using MauiBlazorToolkit.Platform;
 using System.Runtime.CompilerServices;
 using System.Runtime.Versioning;
+using TitleBar = MauiBlazorToolkit.Platform.TitleBar;
 
 namespace MauiBlazorToolkit.Behaviors;
 

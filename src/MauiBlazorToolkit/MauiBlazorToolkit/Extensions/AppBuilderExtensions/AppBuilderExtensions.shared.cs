@@ -1,6 +1,8 @@
 ﻿using MauiBlazorToolkit.Essentials;
-using MauiBlazorToolkit.Platform;
 using Microsoft.Maui.LifecycleEvents;
+#if WINDOWS || MACCATALYST
+using TitleBar = MauiBlazorToolkit.Platform.TitleBar;
+#endif
 #if ANDROID
 using static AndroidX.Activity.Result.Contract.ActivityResultContracts;
 #endif
