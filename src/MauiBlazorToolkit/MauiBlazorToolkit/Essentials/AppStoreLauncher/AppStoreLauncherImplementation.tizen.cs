@@ -1,6 +1,6 @@
 ﻿namespace MauiBlazorToolkit.Essentials
 {
-    public sealed partial class AppStoreLauncherImplementation
+    internal sealed partial class AppStoreLauncherImplementation
     {
         static string InternalAppStoreAppUri(string appId)
             => $"tizenstore://ProductDetail/{appId}";

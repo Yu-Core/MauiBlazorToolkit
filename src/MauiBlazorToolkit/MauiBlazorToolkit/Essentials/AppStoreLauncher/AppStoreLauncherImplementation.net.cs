@@ -1,6 +1,6 @@
 ﻿namespace MauiBlazorToolkit.Essentials
 {
-    public sealed partial class AppStoreLauncherImplementation
+    internal sealed partial class AppStoreLauncherImplementation
     {
         static Task<bool> PlatformCanOpenAsync(string appId) => throw new NotSupportedException($"{nameof(PlatformCanOpenAsync)} is not supported");
 

@@ -1,6 +1,6 @@
 ﻿namespace MauiBlazorToolkit.Essentials
 {
-    public sealed partial class AppStoreLauncherImplementation : IAppStoreLauncher
+    internal sealed partial class AppStoreLauncherImplementation : IAppStoreLauncher
     {
         public Task<bool> CanOpenAsync(string appId)
             => PlatformCanOpenAsync(appId);

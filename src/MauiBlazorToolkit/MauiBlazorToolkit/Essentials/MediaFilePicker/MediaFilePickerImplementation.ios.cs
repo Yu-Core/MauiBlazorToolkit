@@ -7,7 +7,7 @@ using UIKit;
 namespace MauiBlazorToolkit.Essentials
 {
     [SupportedOSPlatform("iOS")]
-    public sealed partial class MediaFilePickerImplementation
+    internal sealed partial class MediaFilePickerImplementation
     {
         public static Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync()
              => PlatformPickMultipAsync(true);

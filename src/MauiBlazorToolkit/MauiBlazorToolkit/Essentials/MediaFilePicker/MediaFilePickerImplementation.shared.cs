@@ -1,7 +1,7 @@
 ﻿
 namespace MauiBlazorToolkit.Essentials
 {
-    public sealed partial class MediaFilePickerImplementation : IMediaFilePicker
+    internal sealed partial class MediaFilePickerImplementation : IMediaFilePicker
     {
         public Task<IEnumerable<FileResult>?> PickMultiplePhotoAsync()
             => PlatformPickMultiplePhotoAsync();

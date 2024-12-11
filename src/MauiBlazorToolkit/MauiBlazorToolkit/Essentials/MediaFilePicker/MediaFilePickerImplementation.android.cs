@@ -10,7 +10,7 @@ using static AndroidX.Activity.Result.Contract.ActivityResultContracts;
 namespace MauiBlazorToolkit.Essentials
 {
     [SupportedOSPlatform("Android")]
-    public sealed partial class MediaFilePickerImplementation
+    internal sealed partial class MediaFilePickerImplementation
     {
         public static Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync(bool usePhotoPicker = true)
              => PlatformPickMultipleAsync(true, usePhotoPicker);

@@ -1,6 +1,6 @@
 ﻿namespace MauiBlazorToolkit.Essentials
 {
-    public sealed partial class MediaFilePickerImplementation
+    internal sealed partial class MediaFilePickerImplementation
     {
         public Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync()
              => throw new NotSupportedException($"{nameof(PlatformPickMultiplePhotoAsync)} is not supported");

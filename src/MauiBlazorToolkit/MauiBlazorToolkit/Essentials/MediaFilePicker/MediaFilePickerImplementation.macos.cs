@@ -3,7 +3,7 @@
 namespace MauiBlazorToolkit.Essentials
 {
     [UnsupportedOSPlatform("MacCatalyst")]
-    public partial class MediaFilePickerImplementation
+    internal partial class MediaFilePickerImplementation
     {
         public Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync()
              => throw new NotSupportedException($"{nameof(PlatformPickMultiplePhotoAsync)} is not supported on MacCatalyst");

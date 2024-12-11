@@ -4,7 +4,7 @@ using MauiBlazorToolkit.Platform;
 
 namespace MauiBlazorToolkit.Essentials
 {
-    public class AndroidFilePickerImplementation : IAndroidFilePicker
+    internal class AndroidFilePickerImplementation : IAndroidFilePicker
     {
         public async Task<FileResult?> PickAsync(PickOptions? options = null)
             => (await PlatformPickAsync(options))?.FirstOrDefault();

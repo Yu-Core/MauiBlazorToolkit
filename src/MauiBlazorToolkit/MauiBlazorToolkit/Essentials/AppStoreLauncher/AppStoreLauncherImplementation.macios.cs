@@ -1,16 +1,14 @@
-﻿using System;
-
-namespace MauiBlazorToolkit.Essentials
+﻿namespace MauiBlazorToolkit.Essentials
 {
-    public sealed partial class AppStoreLauncherImplementation
+    internal sealed partial class AppStoreLauncherImplementation
     {
         static string InternalAppStoreAppUri(string appId)
            => $"itms-apps://itunes.apple.com/app/id{appId}";
 
-        static Task<bool> PlatformCanOpenAsync(string appId) 
+        static Task<bool> PlatformCanOpenAsync(string appId)
             => Launcher.CanOpenAsync(InternalAppStoreAppUri(appId));
 
-        static Task<bool> PlatformOpenAsync(string appId) 
+        static Task<bool> PlatformOpenAsync(string appId)
             => Launcher.OpenAsync(InternalAppStoreAppUri(appId));
     }
 }

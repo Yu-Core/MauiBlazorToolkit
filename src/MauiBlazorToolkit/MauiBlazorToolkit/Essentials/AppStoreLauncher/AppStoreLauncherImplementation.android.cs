@@ -1,11 +1,11 @@
 ﻿using Android.Content;
-using Application = Android.App.Application;
 using AndroidUri = Android.Net.Uri;
+using Application = Android.App.Application;
 using Uri = System.Uri;
 
 namespace MauiBlazorToolkit.Essentials
 {
-    public sealed partial class AppStoreLauncherImplementation
+    internal sealed partial class AppStoreLauncherImplementation
     {
         static string InternalAppStoreAppUri(string appId)
             => $"market://details?id={appId}";
