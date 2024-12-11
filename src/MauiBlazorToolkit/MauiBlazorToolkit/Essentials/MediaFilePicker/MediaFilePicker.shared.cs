@@ -1,6 +1,6 @@
 ﻿namespace MauiBlazorToolkit.Essentials
 {
-    public static class MediaFilePicker
+    public static partial class MediaFilePicker
     {
         static readonly Lazy<IMediaFilePicker> defaultImplementation = new(new MediaFilePickerImplementation());
 

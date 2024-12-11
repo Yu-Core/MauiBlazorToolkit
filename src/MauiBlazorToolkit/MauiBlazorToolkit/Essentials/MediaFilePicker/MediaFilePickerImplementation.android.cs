@@ -12,17 +12,17 @@ namespace MauiBlazorToolkit.Essentials
     [SupportedOSPlatform("Android")]
     public sealed partial class MediaFilePickerImplementation
     {
-        public static Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync()
-             => PlatformPickMultipleAsync(true);
+        public static Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync(bool usePhotoPicker = true)
+             => PlatformPickMultipleAsync(true, usePhotoPicker);
 
-        public static Task<IEnumerable<FileResult>?> PlatformPickMultipleVideoAsync()
-             => PlatformPickMultipleAsync(false);
+        public static Task<IEnumerable<FileResult>?> PlatformPickMultipleVideoAsync(bool usePhotoPicker = true)
+             => PlatformPickMultipleAsync(false, usePhotoPicker);
 
-        public static Task<FileResult?> PlatformPickPhotoAsync()
-            => PlatformPickAsync(true);
+        public static Task<FileResult?> PlatformPickPhotoAsync(bool usePhotoPicker = true)
+            => PlatformPickAsync(true, usePhotoPicker);
 
-        public static Task<FileResult?> PlatformPickVideoAsync()
-            => PlatformPickAsync(false);
+        public static Task<FileResult?> PlatformPickVideoAsync(bool usePhotoPicker = true)
+            => PlatformPickAsync(false, usePhotoPicker);
 
         private static PickVisualMediaRequest BuilderPickVisualMediaRequest(bool photo)
         {
@@ -31,9 +31,9 @@ namespace MauiBlazorToolkit.Essentials
                 .Build();
         }
 
-        private static async Task<FileResult?> PlatformPickAsync(bool photo)
+        private static async Task<FileResult?> PlatformPickAsync(bool photo, bool usePhotoPicker = true)
         {
-            if (IsPhotoPickerAvailable())
+            if (usePhotoPicker && IsPhotoPickerAvailable())
             {
                 return await PlatformPickAsyncUsePhotoPicker(photo);
             }
@@ -49,9 +49,9 @@ namespace MauiBlazorToolkit.Essentials
             }
         }
 
-        private static async Task<IEnumerable<FileResult>?> PlatformPickMultipleAsync(bool photo)
+        private static async Task<IEnumerable<FileResult>?> PlatformPickMultipleAsync(bool photo, bool usePhotoPicker = true)
         {
-            if (IsPhotoPickerAvailable())
+            if (usePhotoPicker && IsPhotoPickerAvailable())
             {
                 return await PlatformPickMultipleAsyncUsePhotoPicker(photo);
             }
