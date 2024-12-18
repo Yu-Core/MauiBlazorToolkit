@@ -12,16 +12,16 @@ namespace MauiBlazorToolkit.Essentials
     [SupportedOSPlatform("Android")]
     internal sealed partial class MediaFilePickerImplementation
     {
-        public static Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync(bool usePhotoPicker = true)
+        public static Task<IEnumerable<FileResult>?> PlatformPickMultiplePhotoAsync(bool usePhotoPicker = false)
              => PlatformPickMultipleAsync(true, usePhotoPicker);
 
-        public static Task<IEnumerable<FileResult>?> PlatformPickMultipleVideoAsync(bool usePhotoPicker = true)
+        public static Task<IEnumerable<FileResult>?> PlatformPickMultipleVideoAsync(bool usePhotoPicker = false)
              => PlatformPickMultipleAsync(false, usePhotoPicker);
 
-        public static Task<FileResult?> PlatformPickPhotoAsync(bool usePhotoPicker = true)
+        public static Task<FileResult?> PlatformPickPhotoAsync(bool usePhotoPicker = false)
             => PlatformPickAsync(true, usePhotoPicker);
 
-        public static Task<FileResult?> PlatformPickVideoAsync(bool usePhotoPicker = true)
+        public static Task<FileResult?> PlatformPickVideoAsync(bool usePhotoPicker = false)
             => PlatformPickAsync(false, usePhotoPicker);
 
         private static PickVisualMediaRequest BuilderPickVisualMediaRequest(bool photo)
@@ -31,7 +31,7 @@ namespace MauiBlazorToolkit.Essentials
                 .Build();
         }
 
-        private static async Task<FileResult?> PlatformPickAsync(bool photo, bool usePhotoPicker = true)
+        private static async Task<FileResult?> PlatformPickAsync(bool photo, bool usePhotoPicker = false)
         {
             if (usePhotoPicker && IsPhotoPickerAvailable())
             {
@@ -49,7 +49,7 @@ namespace MauiBlazorToolkit.Essentials
             }
         }
 
-        private static async Task<IEnumerable<FileResult>?> PlatformPickMultipleAsync(bool photo, bool usePhotoPicker = true)
+        private static async Task<IEnumerable<FileResult>?> PlatformPickMultipleAsync(bool photo, bool usePhotoPicker = false)
         {
             if (usePhotoPicker && IsPhotoPickerAvailable())
             {

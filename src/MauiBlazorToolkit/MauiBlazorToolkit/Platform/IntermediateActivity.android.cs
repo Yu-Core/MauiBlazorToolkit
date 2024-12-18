@@ -1,17 +1,88 @@
-﻿using Android.Content;
-using System.Reflection;
+﻿using Android.App;
+using Android.Content;
+using System.Collections.Concurrent;
 
-#nullable disable
 namespace MauiBlazorToolkit.Platform
 {
     public class IntermediateActivity
     {
-        static readonly Type intermediateActivityType = typeof(FileSystem).Assembly.GetType("Microsoft.Maui.ApplicationModel.IntermediateActivity") ?? throw new Exception("IntermediateActivity type not found.");
-        static readonly MethodInfo startAsync = intermediateActivityType.GetMethod("StartAsync", BindingFlags.Public | BindingFlags.Static) ?? throw new Exception("StartAsync method not found.");
+        static readonly string guidExtra = Guid.NewGuid().ToString();
 
-        public static Task<Intent> StartAsync(Intent intent, int requestCode, Action<Intent>? onCreate = null, Action<Intent>? onResult = null)
+        static readonly ConcurrentDictionary<string, IntermediateTask> pendingTasks = new();
+
+        static Activity? Activity => Microsoft.Maui.ApplicationModel.Platform.CurrentActivity;
+
+        internal static void OnActivityResult(int requestCode, Result resultCode, Intent? data)
         {
-            return startAsync.Invoke(null, [intent, requestCode, onCreate, onResult]) as Task<Intent>;
+            string? guid = Activity?.Intent?.GetStringExtra(guidExtra);
+            var task = GetIntermediateTask(guid, true);
+
+            if (task is null)
+                return;
+
+            if (resultCode == Result.Canceled)
+            {
+                task.TaskCompletionSource.TrySetCanceled();
+            }
+            else
+            {
+                try
+                {
+                    data ??= new Intent();
+
+                    task.OnResult?.Invoke(data);
+
+                    task.TaskCompletionSource.TrySetResult(data);
+                }
+                catch (Exception ex)
+                {
+                    task.TaskCompletionSource.TrySetException(ex);
+                }
+            }
+        }
+
+        public static Task<Intent> StartAsync(Intent intent, int requestCode, Action<Intent>? onResult = null)
+        {
+            var data = new IntermediateTask(onResult);
+            pendingTasks[data.Id] = data;
+
+            Activity?.Intent?.PutExtra(guidExtra, data.Id);
+
+            Activity?.StartActivityForResult(intent, requestCode);
+
+            return data.TaskCompletionSource.Task;
+        }
+
+        static IntermediateTask? GetIntermediateTask(string? guid, bool remove = false)
+        {
+            if (string.IsNullOrEmpty(guid))
+                return null;
+
+            if (remove)
+            {
+                pendingTasks.TryRemove(guid, out var removedTask);
+                return removedTask;
+            }
+
+            pendingTasks.TryGetValue(guid, out var task);
+            return task;
+        }
+
+        class IntermediateTask
+        {
+            public IntermediateTask(Action<Intent>? onResult)
+            {
+                Id = Guid.NewGuid().ToString();
+                TaskCompletionSource = new TaskCompletionSource<Intent>();
+
+                OnResult = onResult;
+            }
+
+            public string Id { get; }
+
+            public TaskCompletionSource<Intent> TaskCompletionSource { get; }
+
+            public Action<Intent>? OnResult { get; }
         }
     }
 }

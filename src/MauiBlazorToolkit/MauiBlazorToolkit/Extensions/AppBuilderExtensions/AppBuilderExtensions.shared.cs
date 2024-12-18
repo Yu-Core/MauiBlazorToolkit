@@ -5,6 +5,8 @@ using TitleBar = MauiBlazorToolkit.Platform.TitleBar;
 #endif
 #if ANDROID
 using static AndroidX.Activity.Result.Contract.ActivityResultContracts;
+using Android.App;
+using Android.Content;
 #endif
 
 namespace MauiBlazorToolkit.Extensions
@@ -53,6 +55,10 @@ namespace MauiBlazorToolkit.Extensions
                             PickVisualMediaForResult.Default.Register(componentActivity);
                             PickMultipleVisualMediaForResult.Default.Register(componentActivity);
                         }
+                    });
+                    android.OnActivityResult((Activity activity, int requestCode, Result resultCode, Intent? data) =>
+                    {
+                        MauiBlazorToolkit.Platform.IntermediateActivity.OnActivityResult(requestCode, resultCode, data);
                     });
                 });
 #endif
