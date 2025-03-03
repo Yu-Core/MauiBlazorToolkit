@@ -1,4 +1,4 @@
-﻿using Android.Content;
+using Android.Content;
 using Android.Runtime;
 using AndroidX.Activity.Result;
 using AndroidX.Activity.Result.Contract;
