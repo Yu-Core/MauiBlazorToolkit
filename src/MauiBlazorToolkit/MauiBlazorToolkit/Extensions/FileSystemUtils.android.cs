@@ -8,10 +8,9 @@ namespace MauiBlazorToolkit.Extensions
     public static class FileSystemUtils
     {
         static readonly Type fileSystemUtilsType = typeof(FileSystem).Assembly.GetType("Microsoft.Maui.Storage.FileSystemUtils") ?? throw new Exception("FileSystemUtils type not found.");
-        static readonly FieldInfo UriSchemeFileField = fileSystemUtilsType.GetField("UriSchemeFile", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static) ?? throw new Exception("Field UriSchemeFileField does not exist");
-        static readonly string UriSchemeFile = UriSchemeFileField.GetValue(null) as string;
         static readonly MethodInfo ResolveDocumentPathMethod = fileSystemUtilsType.GetMethod("ResolveDocumentPath", BindingFlags.NonPublic | BindingFlags.Static) ?? throw new Exception("ResolveDocumentPath method not found.");
         static readonly MethodInfo CacheContentFileMethod = fileSystemUtilsType.GetMethod("CacheContentFile", BindingFlags.NonPublic | BindingFlags.Static) ?? throw new Exception("CacheContentFile method not found.");
+        static readonly string UriSchemeFile = "file";
 
         public static string EnsurePhysicalPath(AndroidUri uri)
         {
