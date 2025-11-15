@@ -4,10 +4,8 @@
              xmlns:local="clr-namespace:MauiBlazorToolkit.Sample"
              x:Class="MauiBlazorToolkit.Sample.MainPage"
              xmlns:mauiBlazorToolkit="clr-namespace:MauiBlazorToolkit.Behaviors;assembly=MauiBlazorToolkit"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
-    <ContentPage.Behaviors>
-        <mauiBlazorToolkit:TitleBarBehavior TitleBarColor="#fff" TitleBarStyle="DarkContent"></mauiBlazorToolkit:TitleBarBehavior>
-    </ContentPage.Behaviors>
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             SafeAreaEdges="All">
     <BlazorWebView x:Name="blazorWebView" HostPage="wwwroot/index.html">
         <BlazorWebView.RootComponents>
             <RootComponent Selector="#app" ComponentType="{x:Type local:Main}" />
